@@ -17,14 +17,14 @@ class SkillExtractionResponse(BaseModel):
 
 class GapAnalysisRequest(BaseModel):
     userSkills: Dict[str, List[str]]
-    jobDescriptions: List[Dict]
-    domain: Optional[str] = None
+    jobDescriptions: Optional[List[Dict]] = None
+    domain: Optional[str] = "Frontend Developer"
 
 class GapAnalysisResponse(BaseModel):
     readinessScore: int
     matchedSkills: List[Dict]
     missingSkills: List[Dict]
-    generatedRoadmap: str
+    generatedRoadmap: List[Dict]
     totalMarketSkills: int
     userSkillCount: int
 
@@ -97,11 +97,45 @@ async def analyze_gap_endpoint(request: GapAnalysisRequest):
         if not request.userSkills:
             raise HTTPException(status_code=400, detail="User skills cannot be empty")
         
-        if not request.jobDescriptions:
-            raise HTTPException(status_code=400, detail="Job descriptions cannot be empty")
+        # Use provided job descriptions or mock data based on domain
+        jobs = request.jobDescriptions
+        
+        if not jobs:
+            # MOCK DATA CACHE (In production, fetch from DB)
+            mock_jobs_db = {
+                "Frontend Developer": [
+                    {"skills": ["React", "JavaScript", "CSS", "HTML", "TypeScript", "Tailwind", "Next.js", "Redux", "Git"]},
+                    {"skills": ["Vue", "JavaScript", "HTML", "CSS", "Sass", "Webpack"]},
+                    {"skills": ["React", "TypeScript", "MaterialUI", "Jest", "GraphQL"]},
+                    {"skills": ["Angular", "TypeScript", "RxJS", "HTML", "SCSS"]},
+                    {"skills": ["JavaScript", "React", "Node.js", "CSS", "Figma"]}
+                ] * 20, # Multiply to simulate volume
+                
+                "Backend Developer": [
+                    {"skills": ["Python", "Django", "SQL", "PostgreSQL", "Docker", "AWS", "Git", "Redis"]},
+                    {"skills": ["Node.js", "Express", "MongoDB", "JavaScript", "TypeScript", "REST API"]},
+                    {"skills": ["Java", "Spring Boot", "MySQL", "Microservices", "Kafka"]},
+                    {"skills": ["Go", "PostgreSQL", "Docker", "Kubernetes", "gRPC"]},
+                    {"skills": ["Python", "Flask", "SQLAlchemy", "Celery", "RabbitMQ"]}
+                ] * 20,
+                
+                "Data Analyst": [
+                    {"skills": ["Python", "Pandas", "NumPy", "SQL", "Tableau", "Excel", "Statistics"]},
+                    {"skills": ["R", "SQL", "PowerBI", "Data Visualization", "Excel"]},
+                    {"skills": ["Python", "SQL", "Machine Learning", "Scikit-Learn", "Jupyter"]},
+                    {"skills": ["Excel", "VBA", "SQL", "Reporting", "Google Sheets"]},
+                    {"skills": ["Python", "Spark", "Hadoop", "SQL", "AWS"]}
+                ] * 20
+            }
+            
+            # Default to Frontend if domain not found
+            # Use strict matching or default to Frontend
+            jobs = mock_jobs_db.get(request.domain)
+            if not jobs: 
+                jobs = mock_jobs_db["Frontend Developer"]
         
         # Perform gap analysis
-        analysis = analyze_gap(request.userSkills, request.jobDescriptions)
+        analysis = analyze_gap(request.userSkills, jobs)
         
         return analysis
     

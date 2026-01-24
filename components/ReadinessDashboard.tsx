@@ -4,13 +4,21 @@ import { ProgressRing } from '@/components/ui/ProgressRing';
 import { Card } from '@/components/ui/Card';
 import { GapAnalysisResults } from '@/components/GapAnalysisResults';
 import { LearningRoadmap } from '@/components/LearningRoadmap';
+import { SkillChart } from '@/components/SkillChart';
+import { MarketAnalysisCharts } from '@/components/MarketAnalysisCharts';
+import { InternshipProbabilityGauge } from '@/components/InternshipProbabilityGauge';
+import { GitHubAnalyzer } from '@/components/GitHubAnalyzer';
+import { ResumeFeedback } from '@/components/ResumeFeedback';
 
 interface DashboardProps {
     analysisResults: any;
     userProfile?: any;
+    domain?: string; // Added domain prop
+    githubUsername?: string;
+    extractedSkills?: Record<string, string[]>; // Added for ResumeFeedback
 }
 
-export const ReadinessDashboard = ({ analysisResults }: DashboardProps) => {
+export const ReadinessDashboard = ({ analysisResults, githubUsername, extractedSkills }: DashboardProps) => {
     if (!analysisResults) return null;
 
     const { readinessScore, matchedSkills, missingSkills, generatedRoadmap, totalMarketSkills } = analysisResults;
@@ -29,22 +37,14 @@ export const ReadinessDashboard = ({ analysisResults }: DashboardProps) => {
         <div className="animate-fade-in pb-12">
             {/* Hero Score Section */}
             <div className="flex flex-col md:flex-row gap-6 mb-8">
-                <Card className="flex-1 flex flex-col items-center justify-center p-8 bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700">
-                    <h2 className="text-lg text-gray-400 font-medium mb-6 uppercase tracking-wider">Internship Readiness Score</h2>
-                    <motion.div
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <ProgressRing progress={readinessScore} size={200} strokeWidth={16} />
-                    </motion.div>
-                    <div className={`mt-6 text-2xl font-bold ${status.color}`}>
-                        {status.text}
-                    </div>
-                    <p className="mt-2 text-sm text-gray-500 text-center max-w-xs">
-                        Based on analysis of {totalMarketSkills}+ current job market skills in Bangladesh
-                    </p>
-                </Card>
+                {/* Feature C: Internship Probability Gauge */}
+                <div className="flex-1">
+                    <InternshipProbabilityGauge
+                        score={readinessScore}
+                        matchedSkillsCount={matchedSkills.length}
+                        missingSkillsCount={missingSkills.length}
+                    />
+                </div>
 
                 <Card className="flex-1 p-8 flex flex-col justify-center">
                     <h3 className="text-xl font-bold text-white mb-6">Reality Check 🧐</h3>
@@ -82,6 +82,10 @@ export const ReadinessDashboard = ({ analysisResults }: DashboardProps) => {
                         </div>
                     </div>
                 </Card>
+
+                <div className="w-full md:w-1/3 lg:w-1/4">
+                    <SkillChart matchedSkills={matchedSkills} missingSkills={missingSkills} />
+                </div>
             </div>
 
             {/* Detailed Analysis Breakdown */}
@@ -90,6 +94,20 @@ export const ReadinessDashboard = ({ analysisResults }: DashboardProps) => {
                 missingSkills={missingSkills}
                 readinessScore={readinessScore}
             />
+
+            {/* Feature B: Market Analysis Charts */}
+            <MarketAnalysisCharts domain={analysisResults.domain || "Frontend Developer"} />
+
+            {/* Feature D: GitHub Analyzer */}
+            {githubUsername && <GitHubAnalyzer username={githubUsername} />}
+
+            {/* Feature E: AI Resume Feedback */}
+            {extractedSkills && (
+                <ResumeFeedback
+                    extractedSkills={extractedSkills}
+                    matchedSkills={matchedSkills}
+                />
+            )}
 
             {/* Learning Roadmap */}
             <LearningRoadmap

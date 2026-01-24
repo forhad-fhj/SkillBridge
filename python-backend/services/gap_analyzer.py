@@ -100,61 +100,84 @@ def identify_missing_skills(
     missing.sort(key=lambda x: x["frequency"], reverse=True)
     return missing[:top_n]
 
+def get_skill_resources(skill: str) -> Dict:
+    """
+    Get estimated time and resources for a specific skill.
+    This acts as a mock database.
+    """
+    skill_lower = skill.lower()
+    
+    # Default fallback
+    resources = {
+        "estimated_time": "1-2 weeks",
+        "description": f"Learn the fundamentals of {skill} and build a small project.",
+        "resources": [
+            {"title": f"{skill} Documentation", "url": f"https://www.google.com/search?q={skill}+documentation"},
+            {"title": "FreeCodeCamp Guide", "url": f"https://www.freecodecamp.org/news/search/?query={skill}"}
+        ]
+    }
+    
+    # Specific overrides
+    if "python" in skill_lower:
+        resources["estimated_time"] = "3-4 weeks"
+        resources["description"] = "Master Python syntax, data structures, and OOP concepts."
+        resources["resources"] = [
+            {"title": "Python.org", "url": "https://www.python.org/about/gettingstarted/"},
+            {"title": "Real Python", "url": "https://realpython.com/"},
+            {"title": "Automate the Boring Stuff", "url": "https://automatetheboringstuff.com/"}
+        ]
+    elif "react" in skill_lower:
+        resources["estimated_time"] = "2-3 weeks"
+        resources["description"] = "Learn Components, Hooks, State Management, and Next.js basics."
+        resources["resources"] = [
+            {"title": "React Docs", "url": "https://react.dev/"},
+            {"title": "Fullstack Open", "url": "https://fullstackopen.com/en/"}
+        ]
+    elif "sql" in skill_lower or "database" in skill_lower:
+        resources["estimated_time"] = "1-2 weeks"
+        resources["description"] = "Understand relational DBs, SELECT queries, JOINs, and normalization."
+        resources["resources"] = [
+            {"title": "SQLZoo", "url": "https://sqlzoo.net/"},
+            {"title": "Khan Academy SQL", "url": "https://www.khanacademy.org/computing/computer-programming/sql"}
+        ]
+    elif "docker" in skill_lower or "kubernetes" in skill_lower:
+        resources["estimated_time"] = "1 week"
+        resources["description"] = "Learn containerization, Dockerfiles, and basic orchestration."
+        
+    return resources
+
 def generate_learning_roadmap(
     missing_skills: List[Dict[str, any]],
     current_score: int
-) -> str:
+) -> List[Dict]:
     """
-    Generate a personalized learning roadmap based on missing skills.
+    Generate a personalized structured learning roadmap.
     
-    Args:
-        missing_skills: List of missing skills with priority
-        current_score: Current readiness score
-        
     Returns:
-        Markdown-formatted learning roadmap
+        List of roadmap items with details
     """
     if not missing_skills:
-        return "🎉 Congratulations! You have all the key skills in demand. Focus on building projects to showcase your expertise."
+        return []
     
-    roadmap = f"# Your Learning Roadmap\n\n"
-    roadmap += f"**Current Readiness Score:** {current_score}%\n\n"
+    roadmap = []
     
-    # Calculate potential score increase
-    potential_increase = min(30, len(missing_skills) * 3)
-    roadmap += f"**Potential Score After Completion:** ~{min(current_score + potential_increase, 100)}%\n\n"
+    # Sort by priority (Critical > High > Medium)
+    priority_order = {"Critical": 0, "High": 1, "Medium": 2}
+    sorted_skills = sorted(missing_skills, key=lambda x: priority_order.get(x["priority"], 3))
     
-    roadmap += "## Priority Skills to Learn\n\n"
-    
-    # Group by priority
-    critical = [s for s in missing_skills if s["priority"] == "Critical"]
-    high = [s for s in missing_skills if s["priority"] == "High"]
-    medium = [s for s in missing_skills if s["priority"] == "Medium"]
-    
-    if critical:
-        roadmap += "### 🔴 Critical Priority (Learn First)\n"
-        for i, skill in enumerate(critical, 1):
-            roadmap += f"{i}. **{skill['skill']}** - Required in {skill['frequency']} job postings\n"
-        roadmap += "\n"
-    
-    if high:
-        roadmap += "### 🟡 High Priority (Learn Next)\n"
-        for i, skill in enumerate(high, 1):
-            roadmap += f"{i}. **{skill['skill']}** - Required in {skill['frequency']} job postings\n"
-        roadmap += "\n"
-    
-    if medium:
-        roadmap += "### 🟢 Medium Priority (Nice to Have)\n"
-        for i, skill in enumerate(medium, 1):
-            roadmap += f"{i}. **{skill['skill']}** - Required in {skill['frequency']} job postings\n"
-        roadmap += "\n"
-    
-    roadmap += "## Recommended Learning Path\n\n"
-    roadmap += "1. **Start with Critical Priority skills** - These appear most frequently in job postings\n"
-    roadmap += "2. **Build projects** - Apply each skill in a real project\n"
-    roadmap += "3. **Update your CV** - Add new skills as you learn them\n"
-    roadmap += "4. **Re-analyze** - Check your progress and updated readiness score\n"
-    
+    for item in sorted_skills:
+        skill_name = item["skill"]
+        details = get_skill_resources(skill_name)
+        
+        step = {
+            "skill": skill_name,
+            "priority": item["priority"],
+            "estimated_time": details["estimated_time"],
+            "description": details["description"],
+            "resources": details["resources"]
+        }
+        roadmap.append(step)
+            
     return roadmap
 
 def analyze_gap(
