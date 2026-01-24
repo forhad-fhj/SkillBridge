@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  resumeUrl String?  @map("resume_url")
+  createdAt DateTime @default(now()) @map("created_at")
+  
+  analyses  AnalysisResult[]
+
+  @@map("users")
+}
+
+model Job {
+  id              String   @id @default(uuid())
+  title           String
+  company         String
+  descriptionText String   @map("description_text") @db.Text
+  sourceUrl       String?  @map("source_url")
+  extractedSkills Json     @map("extracted_skills")
+  domain          String   // e.g., "Frontend Developer", "Data Analyst"
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  @@map("jobs")
+  @@index([domain])
+}
+
+model AnalysisResult {
+  id               String   @id @default(uuid())
+  userId           String   @map("user_id")
+  readinessScore   Int      @map("readiness_score")
+  matchedSkills    Json     @map("matched_skills")
+  missingSkills    Json     @map("missing_skills")
+  generatedRoadmap String   @map("generated_roadmap") @db.Text
+  createdAt        DateTime @default(now()) @map("created_at")
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("analysis_results")
+  @@index([userId])
+}
