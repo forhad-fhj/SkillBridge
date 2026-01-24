@@ -63,14 +63,18 @@ export default function DashboardPage() {
                 }),
             });
 
-            if (!analyzeRes.ok) throw new Error('Analysis failed');
+            if (!analyzeRes.ok) {
+                const errorData = await analyzeRes.json().catch(() => ({}));
+                throw new Error(errorData.detail || `Server returned ${analyzeRes.status}`);
+            }
 
             const data = await analyzeRes.json();
             setAnalysisResults(data);
             setStep('results');
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
-            alert('Something went wrong during analysis. Please try again.');
+            const errorMessage = error.message || 'Something went wrong during analysis.';
+            alert(`Analysis Error: ${errorMessage}\n\nPlease ensure the backend is running and try again.`);
             setStep('ready'); // Go back to ready on error
         } finally {
             setLoading(false);
@@ -88,7 +92,7 @@ export default function DashboardPage() {
         <main className="min-h-screen bg-background text-white p-4 md:p-8">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
-                <header className="flex justify-between items-center mb-12">
+                <header className="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md py-4 -mx-4 px-4 md:px-8 mb-8 border-b border-slate-800/50 flex justify-between items-center transition-all">
                     <Link href="/" className="flex items-center space-x-2 group cursor-pointer hover:opacity-80 transition-opacity">
                         <span className="text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
                             SkillBridge
@@ -199,6 +203,6 @@ export default function DashboardPage() {
             <footer className="mt-20 py-6 text-center text-slate-500 border-t border-slate-800/50">
                 <p>© {new Date().getFullYear()} SkillBridge. All rights reserved to Forhad.</p>
             </footer>
-        </main>
+        </main >
     );
 }

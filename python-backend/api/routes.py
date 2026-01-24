@@ -94,8 +94,10 @@ async def analyze_gap_endpoint(request: GapAnalysisRequest):
     Returns readiness score, matched/missing skills, and learning roadmap.
     """
     try:
-        if not request.userSkills:
-            raise HTTPException(status_code=400, detail="User skills cannot be empty")
+        if request.userSkills is None:
+             raise HTTPException(status_code=400, detail="User skills cannot be None")
+
+        print(f"DEBUG: Analyzying Gap for Domain: '{request.domain}'")
         
         # Use provided job descriptions or mock data based on domain
         jobs = request.jobDescriptions
@@ -125,6 +127,22 @@ async def analyze_gap_endpoint(request: GapAnalysisRequest):
                     {"skills": ["Python", "SQL", "Machine Learning", "Scikit-Learn", "Jupyter"]},
                     {"skills": ["Excel", "VBA", "SQL", "Reporting", "Google Sheets"]},
                     {"skills": ["Python", "Spark", "Hadoop", "SQL", "AWS"]}
+                ] * 20,
+
+                "Full Stack Developer": [
+                    {"skills": ["React", "Node.js", "Express", "MongoDB", "JavaScript", "TypeScript", "HTML", "CSS"]},
+                    {"skills": ["Vue", "Laravel", "PHP", "MySQL", "JavaScript", "Tailwind"]},
+                    {"skills": ["Next.js", "PostgreSQL", "Prisma", "TypeScript", "Tailwind", "Vercel"]},
+                    {"skills": ["Angular", "Java", "Spring Boot", "SQL", "TypeScript"]},
+                    {"skills": ["MERN Stack", "AWS", "Docker", "Git", "CI/CD"]}
+                ] * 20,
+
+                "Mobile Developer": [
+                    {"skills": ["Flutter", "Dart", "Firebase", "Android", "iOS"]},
+                    {"skills": ["React Native", "JavaScript", "TypeScript", "Redux", "Mobile UI"]},
+                    {"skills": ["Swift", "iOS", "Xcode", "CoreData", "SwiftUI"]},
+                    {"skills": ["Kotlin", "Android", "Jetpack Compose", "Java", "Gradle"]},
+                    {"skills": ["Flutter", "Bloc", "Clean Architecture", "Git", "App Store"]}
                 ] * 20
             }
             
@@ -140,6 +158,8 @@ async def analyze_gap_endpoint(request: GapAnalysisRequest):
         return analysis
     
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Error performing gap analysis: {str(e)}")
 
 @router.get("/health")
