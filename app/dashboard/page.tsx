@@ -70,11 +70,11 @@ export default function DashboardPage() {
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <header className="flex justify-between items-center mb-12">
-                    <div className="flex items-center space-x-2">
-                        <span className="text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-400">
+                    <Link href="/" className="flex items-center space-x-2 group cursor-pointer hover:opacity-80 transition-opacity">
+                        <span className="text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">
                             SkillBridge
                         </span>
-                    </div>
+                    </Link>
                     {step === 'results' && (
                         <Button variant="outline" size="sm" onClick={resetAnalysis}>
                             New Analysis
@@ -96,12 +96,6 @@ export default function DashboardPage() {
                                 </p>
                             </div>
                             <FileUpload onUpload={handleFileUpload} isLoading={loading} />
-
-                            {/* Domain Selector (Mock for now) */}
-                            <div className="mt-8 flex justify-center space-x-4 text-sm text-gray-500">
-                                <span>Target Domain:</span>
-                                <span className="text-primary-400 font-medium">Frontend Developer (Active)</span>
-                            </div>
                         </div>
                     )}
 
@@ -121,6 +115,10 @@ export default function DashboardPage() {
 
                 </div>
             </div>
+
+            <footer className="mt-20 py-6 text-center text-slate-500 border-t border-slate-800/50">
+                <p>© {new Date().getFullYear()} SkillBridge. All rights reserved to Forhad.</p>
+            </footer>
         </main>
     );
 }

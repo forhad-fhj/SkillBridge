@@ -21,18 +21,22 @@ export default function Home() {
                         </Link>
                     </div>
 
-                    <div className="glass rounded-2xl p-8 max-w-md animate-slide-up delay-75">
-                        <p className="text-gray-300 mb-4">
-                            🔥 Trending now: <strong>Frontend Developer</strong>, <strong>Data Analyst</strong>
+                    <div className="glass rounded-2xl p-8 max-w-md animate-slide-up delay-75 border-slate-700/50 bg-slate-800/30">
+                        <p className="text-slate-300 mb-4">
+                            🔥 Trending now: <strong className="text-blue-400">Frontend Developer</strong>, <strong className="text-purple-400">Data Analyst</strong>
                         </p>
                         <div className="flex items-center justify-center space-x-2">
-                            <span className="text-xs px-2 py-1 bg-primary-500/20 rounded-full text-primary-300">React.js</span>
-                            <span className="text-xs px-2 py-1 bg-secondary-500/20 rounded-full text-secondary-300">Python</span>
-                            <span className="text-xs px-2 py-1 bg-accent-500/20 rounded-full text-accent-300">Node.js</span>
+                            <span className="text-xs px-2 py-1 bg-blue-500/10 rounded-full text-blue-300 border border-blue-500/20">React.js</span>
+                            <span className="text-xs px-2 py-1 bg-purple-500/10 rounded-full text-purple-300 border border-purple-500/20">Python</span>
+                            <span className="text-xs px-2 py-1 bg-emerald-500/10 rounded-full text-emerald-300 border border-emerald-500/20">Node.js</span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <footer className="absolute bottom-4 w-full text-center text-slate-500 text-sm">
+                <p>© {new Date().getFullYear()} SkillBridge. All rights reserved to Forhad.</p>
+            </footer>
         </main>
     );
 }
