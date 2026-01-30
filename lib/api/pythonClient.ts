@@ -19,11 +19,7 @@ class PythonClient {
         const formData = new FormData();
         formData.append('file', file);
 
-        const response = await this.client.post('/api/parse-document', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        });
+        const response = await this.client.post('/api/parse-document', formData);
 
         return response.data;
     }
