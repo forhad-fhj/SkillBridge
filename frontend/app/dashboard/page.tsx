@@ -30,16 +30,25 @@ export default function DashboardPage() {
                 body: formData,
             });
 
-            if (!uploadRes.ok) throw new Error('Upload failed');
+            const responseData = await uploadRes.json();
 
-            const parseData = await uploadRes.json();
-            setExtractedSkills(parseData.skills);
+            if (!uploadRes.ok) {
+                throw new Error(responseData.error || `Upload failed with status ${uploadRes.status}`);
+            }
+
+            if (!responseData.skills) {
+                throw new Error('No skills were extracted from the document. Please try another file.');
+            }
+
+            setExtractedSkills(responseData.skills);
 
             // Go to Ready step instead of auto-analyzing
             setStep('ready');
-        } catch (error) {
-            console.error(error);
-            alert('Failed to upload CV. Please try again.');
+        } catch (error: any) {
+            console.error('Upload error:', error);
+            const errorMessage = error.message || 'Failed to upload CV. Please try again.';
+            alert(errorMessage);
+            setStep('upload');
         } finally {
             setLoading(false);
         }
@@ -63,16 +72,21 @@ export default function DashboardPage() {
                 }),
             });
 
+            const data = await analyzeRes.json();
+
             if (!analyzeRes.ok) {
-                const errorData = await analyzeRes.json().catch(() => ({}));
-                throw new Error(errorData.detail || `Server returned ${analyzeRes.status}`);
+                const errorMessage = data.error || data.detail || `Server returned ${analyzeRes.status}`;
+                throw new Error(errorMessage);
             }
 
-            const data = await analyzeRes.json();
+            if (!data.readinessScore) {
+                throw new Error('Invalid response from analysis service');
+            }
+
             setAnalysisResults(data);
             setStep('results');
         } catch (error: any) {
-            console.error(error);
+            console.error('Analysis error:', error);
             const errorMessage = error.message || 'Something went wrong during analysis.';
             alert(`Analysis Error: ${errorMessage}\n\nPlease ensure the backend is running and try again.`);
             setStep('ready'); // Go back to ready on error

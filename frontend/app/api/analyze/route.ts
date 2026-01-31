@@ -27,10 +27,7 @@ export async function POST(request: NextRequest) {
         });
 
         if (jobs.length === 0) {
-            return NextResponse.json(
-                { error: 'No job data available for analysis' },
-                { status: 404 }
-            );
+            console.warn('No jobs found in database, falling back to mock data in Python backend');
         }
 
         // Call Python backend for gap analysis
@@ -40,15 +37,15 @@ export async function POST(request: NextRequest) {
             domain
         );
 
-        // Store analysis result in database if userId is provided
-        if (userId) {
+        // Store analysis result in database if userId is provided and is not a guest
+        if (userId && !userId.startsWith('guest')) {
             await prisma.analysisResult.create({
                 data: {
                     userId,
                     readinessScore: analysis.readinessScore,
                     matchedSkills: analysis.matchedSkills,
                     missingSkills: analysis.missingSkills,
-                    generatedRoadmap: analysis.generatedRoadmap,
+                    generatedRoadmap: JSON.stringify(analysis.generatedRoadmap), // Convert to string as per schema
                 },
             });
         }
