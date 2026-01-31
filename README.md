@@ -209,7 +209,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Issues**: [GitHub Issues](https://github.com/forhad-fhj/SkillBridge/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/forhad-fhj/SkillBridge/discussions)
-- **Email**: [forhad@example.com](mailto:forhad@example.com)
+- **Email**: [forhadhasan1007@google.com](mailto:forhad@google.com)
 
 ---
 
