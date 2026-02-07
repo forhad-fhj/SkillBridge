@@ -4,7 +4,7 @@
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
 [![Python Version](https://img.shields.io/badge/python-%3E%3D3.10-blue)](https://www.python.org/)
 
-SkillBridge is an AI-powered **Internship Readiness Analyzer** designed specifically for students and job seekers in Bangladesh. Using advanced Natural Language Processing (NLP), it analyzes your resume against real-world job descriptions from the Bangladesh tech market to calculate your "Internship Readiness Score" and generate a personalized learning roadmap.
+SkillBridge is an AI-powered **Internship Readiness Analyzer** designed specifically for students and job seekers in Bangladesh. Using advanced Natural Language Processing (NLP), it analyzes your resume against real-world job descriptions from the Bangladesh tech market to calculate your "Internship Readiness Score" and generate a personalized learning roadmap
 
 ## ✨ Key Features
 
