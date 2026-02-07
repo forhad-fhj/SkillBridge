@@ -19,8 +19,8 @@ app.add_middleware(
         "http://localhost:3000",
         "http://localhost:3001",
         "http://127.0.0.1:3000",
+        "https://skill-bridge-lemon.vercel.app",  # Production Vercel domain
         "https://*.vercel.app",  # Allow all Vercel preview deployments
-        "https://skillbridge.vercel.app",  # Production domain (update with your actual domain)
     ],
     allow_credentials=True,
     allow_methods=["*"],
