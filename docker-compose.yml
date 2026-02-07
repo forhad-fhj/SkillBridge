@@ -17,22 +17,23 @@ services:
       timeout: 5s
       retries: 5
 
-  python-backend:
-    build:
-      context: ./python-backend
-      dockerfile: Dockerfile
-    container_name: skillbridge-python
-    restart: unless-stopped
-    ports:
-      - "8000:8000"
-    environment:
-      DATABASE_URL: postgresql://skillbridge:skillbridge123@postgres:5432/skillbridge
-    depends_on:
-      postgres:
-        condition: service_healthy
-    volumes:
-      - ./python-backend:/app
-      - /app/venv
+python-backend:
+  build:
+    context: ./python-backend
+    dockerfile: Dockerfile
+  container_name: skillbridge-python
+  restart: unless-stopped
+  ports:
+    - "8000:8000"
+  environment:
+    DATABASE_URL: postgresql://skillbridge:skillbridge123@postgres:5432/skillbridge
+    PORT: 8000
+  depends_on:
+    postgres:
+      condition: service_healthy
+  volumes:
+    - ./python-backend:/app
+
 
 volumes:
   postgres_data:
