@@ -14,9 +14,6 @@ const nextConfig = {
     images: {
         remotePatterns: [],
     },
-    turbopack: {
-        root: '.',
-    },
 };
 
 export default nextConfig;
