@@ -1,6 +1,8 @@
 import axios, { AxiosInstance } from 'axios';
 
-const PYTHON_BACKEND_URL = process.env.PYTHON_BACKEND_URL || 'http://127.0.0.1:8000';
+// Use NEXT_PUBLIC_ prefix for client-side runtime value when available
+const PYTHON_BACKEND_URL =
+    process.env.NEXT_PUBLIC_PYTHON_BACKEND_URL || process.env.PYTHON_BACKEND_URL || 'http://127.0.0.1:8000';
 
 class PythonClient {
     private client: AxiosInstance;
@@ -9,12 +11,12 @@ class PythonClient {
     constructor() {
         this.client = axios.create({
             baseURL: PYTHON_BACKEND_URL,
-            timeout: 60000, // 60 seconds for file uploads
+            timeout: 120000, // 120 seconds for file uploads (handles cold starts)
         });
 
         this.jsonClient = axios.create({
             baseURL: PYTHON_BACKEND_URL,
-            timeout: 30000,
+            timeout: 120000, // 120 seconds (handles cold starts)
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -33,7 +35,16 @@ class PythonClient {
         try {
             const response = await this.client.post('/api/parse-document', formData);
             return response.data;
-        } catch (error) {
+        } catch (error: any) {
+            // If the backend returned HTML (e.g. a 404/502 page), include the text for debugging
+            if (error.response && error.response.data && typeof error.response.data === 'string') {
+                console.error('[PythonClient] Non-JSON response from backend:', {
+                    url: this.client.defaults.baseURL + '/api/parse-document',
+                    status: error.response.status,
+                    headers: error.response.headers,
+                    bodyPreview: error.response.data.slice(0, 400),
+                });
+            }
             throw this.handleError(error);
         }
     }
