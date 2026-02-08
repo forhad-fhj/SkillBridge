@@ -77,6 +77,20 @@ class PythonClient {
         }
     }
 
+    async analyzeJobFit(userSkills: any, jobDescription: string, resumeText?: string, domain?: string) {
+        try {
+            const response = await this.jsonClient.post('/api/analyze-job-fit', {
+                userSkills,
+                jobDescription,
+                resumeText: resumeText || '',
+                domain: domain || ''
+            });
+            return response.data;
+        } catch (error) {
+            throw this.handleError(error);
+        }
+    }
+
     async healthCheck() {
         try {
             const response = await this.jsonClient.get('/api/health');

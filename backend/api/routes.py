@@ -4,6 +4,7 @@ from typing import List, Dict, Optional
 from services.document_parser import parse_document, clean_text
 from services.nlp_engine import extract_skills_from_text
 from services.gap_analyzer import analyze_gap
+from services.job_fit_analyzer import analyze_job_fit
 import logging
 
 # Setup logging
@@ -84,6 +85,12 @@ class GapAnalysisResponse(BaseModel):
     generatedRoadmap: List[Dict]
     totalMarketSkills: int
     userSkillCount: int
+
+class JobFitRequest(BaseModel):
+    userSkills: Dict[str, List[str]]
+    jobDescription: str
+    resumeText: Optional[str] = ""
+    domain: Optional[str] = ""
 
 # Routes
 @router.post("/parse-document", response_model=SkillExtractionResponse)
@@ -190,7 +197,42 @@ async def analyze_gap_endpoint(request: GapAnalysisRequest):
         logger.error(f"Error performing gap analysis: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Error performing gap analysis: {str(e)}")
 
+@router.post("/analyze-job-fit")
+async def analyze_job_fit_endpoint(request: JobFitRequest):
+    """
+    Analyze how well a user's resume matches a specific job description.
+    
+    Returns:
+    - Match percentage
+    - Matched/missing/extra skills
+    - ATS compatibility score
+    - Improvement tips
+    """
+    try:
+        logger.info(f"Analyzing job fit for domain: {request.domain}")
+        
+        if not request.jobDescription or len(request.jobDescription.strip()) < 50:
+            raise ValueError("Job description is too short. Please provide more details.")
+        
+        result = analyze_job_fit(
+            user_skills=request.userSkills,
+            job_description=request.jobDescription,
+            resume_text=request.resumeText or "",
+            domain=request.domain or ""
+        )
+        
+        logger.info(f"Job fit analysis completed. Match: {result.get('matchPercentage')}%")
+        
+        return result
+    
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        logger.error(f"Error analyzing job fit: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error analyzing job fit: {str(e)}")
+
 @router.get("/health")
 async def health_check():
     """Health check endpoint."""
     return {"status": "healthy", "service": "SkillBridge NLP API"}
+
