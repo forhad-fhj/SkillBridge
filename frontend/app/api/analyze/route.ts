@@ -26,14 +26,17 @@ export async function POST(request: NextRequest) {
             },
         });
 
+        // If no jobs found, send null to trigger backend mock data
+        const jobsToSend = jobs.length === 0 ? null : jobs;
+
         if (jobs.length === 0) {
-            console.warn('No jobs found in database, falling back to mock data in Python backend');
+            console.warn('No jobs found in database, backend will use mock data');
         }
 
         // Call Python backend for gap analysis
         const analysis = await pythonClient.analyzeGap(
             userSkills,
-            jobs,
+            jobsToSend,
             domain
         );
 

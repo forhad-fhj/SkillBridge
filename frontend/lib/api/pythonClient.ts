@@ -58,13 +58,19 @@ class PythonClient {
         }
     }
 
-    async analyzeGap(userSkills: any, jobDescriptions: any[], domain?: string) {
+    async analyzeGap(userSkills: any, jobDescriptions: any[] | null, domain?: string) {
         try {
-            const response = await this.jsonClient.post('/api/analyze-gap', {
+            const payload: any = {
                 userSkills,
-                jobDescriptions,
-                domain,
-            });
+                domain: domain || 'Frontend Developer'
+            };
+
+            // Only include jobDescriptions if not null (allows backend to use mock data)
+            if (jobDescriptions !== null) {
+                payload.jobDescriptions = jobDescriptions;
+            }
+
+            const response = await this.jsonClient.post('/api/analyze-gap', payload);
             return response.data;
         } catch (error) {
             throw this.handleError(error);
