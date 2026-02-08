@@ -5,6 +5,7 @@ from services.document_parser import parse_document, clean_text
 from services.nlp_engine import extract_skills_from_text
 from services.gap_analyzer import analyze_gap
 from services.job_fit_analyzer import analyze_job_fit
+from services.role_recommender import recommend_roles
 import logging
 
 # Setup logging
@@ -91,6 +92,11 @@ class JobFitRequest(BaseModel):
     jobDescription: str
     resumeText: Optional[str] = ""
     domain: Optional[str] = ""
+
+class RoleRecommendRequest(BaseModel):
+    userSkills: Dict[str, List[str]]
+    readinessScore: int
+    maxRoles: Optional[int] = 5
 
 # Routes
 @router.post("/parse-document", response_model=SkillExtractionResponse)
@@ -231,8 +237,39 @@ async def analyze_job_fit_endpoint(request: JobFitRequest):
         logger.error(f"Error analyzing job fit: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Error analyzing job fit: {str(e)}")
 
+@router.post("/recommend-roles")
+async def recommend_roles_endpoint(request: RoleRecommendRequest):
+    """
+    Recommend suitable internship roles based on user's skills and readiness.
+    
+    Returns:
+    - List of recommended roles with fit scores
+    - Skill coverage analysis
+    - Growth path information
+    """
+    try:
+        logger.info(f"Recommending roles for readiness score: {request.readinessScore}")
+        
+        recommendations = recommend_roles(
+            user_skills=request.userSkills,
+            readiness_score=request.readinessScore,
+            max_roles=request.maxRoles or 5
+        )
+        
+        logger.info(f"Generated {len(recommendations)} role recommendations")
+        
+        return {
+            "recommendations": recommendations,
+            "count": len(recommendations)
+        }
+    
+    except Exception as e:
+        logger.error(f"Error recommending roles: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error recommending roles: {str(e)}")
+
 @router.get("/health")
 async def health_check():
     """Health check endpoint."""
     return {"status": "healthy", "service": "SkillBridge NLP API"}
+
 

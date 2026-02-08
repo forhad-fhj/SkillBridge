@@ -91,6 +91,19 @@ class PythonClient {
         }
     }
 
+    async recommendRoles(userSkills: any, readinessScore: number, maxRoles: number = 5) {
+        try {
+            const response = await this.jsonClient.post('/api/recommend-roles', {
+                userSkills,
+                readinessScore,
+                maxRoles
+            });
+            return response.data;
+        } catch (error) {
+            throw this.handleError(error);
+        }
+    }
+
     async healthCheck() {
         try {
             const response = await this.jsonClient.get('/api/health');

@@ -1,0 +1,313 @@
+{
+    "roles": [
+        {
+            "id": "junior-frontend",
+            "title": "Junior Frontend Developer",
+            "company_types": [
+                "Startups",
+                "Tech Companies",
+                "Agencies"
+            ],
+            "difficulty": "Beginner",
+            "minReadiness": 30,
+            "requiredSkills": [
+                "HTML",
+                "CSS",
+                "JavaScript",
+                "React"
+            ],
+            "preferredSkills": [
+                "TypeScript",
+                "Git",
+                "Responsive Design"
+            ],
+            "description": "Entry-level role focused on building user interfaces with React and modern CSS.",
+            "avgSalary": "40,000 - 60,000 BDT/month",
+            "growthPath": "Frontend Developer → Senior Frontend → Tech Lead"
+        },
+        {
+            "id": "frontend-developer",
+            "title": "Frontend Developer",
+            "company_types": [
+                "Product Companies",
+                "SaaS",
+                "E-commerce"
+            ],
+            "difficulty": "Intermediate",
+            "minReadiness": 50,
+            "requiredSkills": [
+                "React",
+                "TypeScript",
+                "CSS",
+                "JavaScript",
+                "Git",
+                "REST API"
+            ],
+            "preferredSkills": [
+                "Next.js",
+                "Redux",
+                "Testing",
+                "Performance Optimization"
+            ],
+            "description": "Mid-level role involving complex UI development, state management, and API integration.",
+            "avgSalary": "60,000 - 100,000 BDT/month",
+            "growthPath": "Frontend Developer → Senior Frontend → Lead Developer"
+        },
+        {
+            "id": "junior-backend",
+            "title": "Junior Backend Developer",
+            "company_types": [
+                "Startups",
+                "Software Houses",
+                "IT Services"
+            ],
+            "difficulty": "Beginner",
+            "minReadiness": 30,
+            "requiredSkills": [
+                "Python",
+                "SQL",
+                "REST API"
+            ],
+            "preferredSkills": [
+                "Django",
+                "Flask",
+                "Git",
+                "Linux"
+            ],
+            "description": "Entry-level backend role focusing on API development and database management.",
+            "avgSalary": "35,000 - 55,000 BDT/month",
+            "growthPath": "Junior Backend → Backend Developer → Senior Backend"
+        },
+        {
+            "id": "backend-developer",
+            "title": "Backend Developer",
+            "company_types": [
+                "Fintech",
+                "Enterprise",
+                "Cloud Companies"
+            ],
+            "difficulty": "Intermediate",
+            "minReadiness": 50,
+            "requiredSkills": [
+                "Python",
+                "Django",
+                "PostgreSQL",
+                "Docker",
+                "REST API",
+                "Git"
+            ],
+            "preferredSkills": [
+                "Redis",
+                "AWS",
+                "Microservices",
+                "CI/CD"
+            ],
+            "description": "Mid-level role handling complex backend systems, databases, and cloud deployment.",
+            "avgSalary": "70,000 - 120,000 BDT/month",
+            "growthPath": "Backend Developer → Senior Backend → Backend Architect"
+        },
+        {
+            "id": "fullstack-intern",
+            "title": "Full Stack Intern",
+            "company_types": [
+                "Startups",
+                "Small Teams",
+                "Agencies"
+            ],
+            "difficulty": "Beginner",
+            "minReadiness": 25,
+            "requiredSkills": [
+                "HTML",
+                "CSS",
+                "JavaScript",
+                "Node.js"
+            ],
+            "preferredSkills": [
+                "React",
+                "Express",
+                "MongoDB",
+                "Git"
+            ],
+            "description": "Internship opportunity to learn both frontend and backend development.",
+            "avgSalary": "15,000 - 30,000 BDT/month",
+            "growthPath": "Intern → Junior Developer → Full Stack Developer"
+        },
+        {
+            "id": "fullstack-developer",
+            "title": "Full Stack Developer",
+            "company_types": [
+                "Product Companies",
+                "Startups",
+                "Consulting"
+            ],
+            "difficulty": "Intermediate",
+            "minReadiness": 55,
+            "requiredSkills": [
+                "React",
+                "Node.js",
+                "Express",
+                "PostgreSQL",
+                "TypeScript",
+                "Git"
+            ],
+            "preferredSkills": [
+                "Docker",
+                "AWS",
+                "GraphQL",
+                "CI/CD"
+            ],
+            "description": "Role requiring expertise in both frontend and backend technologies.",
+            "avgSalary": "80,000 - 150,000 BDT/month",
+            "growthPath": "Full Stack → Senior Full Stack → Engineering Lead"
+        },
+        {
+            "id": "data-analyst-intern",
+            "title": "Data Analyst Intern",
+            "company_types": [
+                "Banks",
+                "E-commerce",
+                "Research"
+            ],
+            "difficulty": "Beginner",
+            "minReadiness": 30,
+            "requiredSkills": [
+                "Python",
+                "SQL",
+                "Excel"
+            ],
+            "preferredSkills": [
+                "Pandas",
+                "Visualization",
+                "Statistics"
+            ],
+            "description": "Entry-level data role focusing on analysis, reporting, and basic visualization.",
+            "avgSalary": "20,000 - 35,000 BDT/month",
+            "growthPath": "Intern → Data Analyst → Senior Analyst"
+        },
+        {
+            "id": "data-analyst",
+            "title": "Data Analyst",
+            "company_types": [
+                "Fintech",
+                "E-commerce",
+                "Telecom"
+            ],
+            "difficulty": "Intermediate",
+            "minReadiness": 50,
+            "requiredSkills": [
+                "Python",
+                "SQL",
+                "Pandas",
+                "Tableau",
+                "Excel",
+                "Statistics"
+            ],
+            "preferredSkills": [
+                "Machine Learning",
+                "PowerBI",
+                "A/B Testing"
+            ],
+            "description": "Mid-level role analyzing data to drive business decisions and insights.",
+            "avgSalary": "50,000 - 90,000 BDT/month",
+            "growthPath": "Data Analyst → Senior Analyst → Data Scientist"
+        },
+        {
+            "id": "mobile-developer-intern",
+            "title": "Mobile Developer Intern",
+            "company_types": [
+                "App Agencies",
+                "Startups",
+                "Tech Companies"
+            ],
+            "difficulty": "Beginner",
+            "minReadiness": 30,
+            "requiredSkills": [
+                "Flutter",
+                "Dart"
+            ],
+            "preferredSkills": [
+                "Firebase",
+                "Git",
+                "UI Design"
+            ],
+            "description": "Internship to learn mobile app development using Flutter.",
+            "avgSalary": "15,000 - 30,000 BDT/month",
+            "growthPath": "Intern → Mobile Developer → Senior Mobile Developer"
+        },
+        {
+            "id": "mobile-developer",
+            "title": "Mobile Developer",
+            "company_types": [
+                "App Companies",
+                "Enterprise",
+                "Fintech"
+            ],
+            "difficulty": "Intermediate",
+            "minReadiness": 50,
+            "requiredSkills": [
+                "React Native",
+                "JavaScript",
+                "TypeScript",
+                "Mobile UI"
+            ],
+            "preferredSkills": [
+                "Redux",
+                "Firebase",
+                "App Store Deployment",
+                "Testing"
+            ],
+            "description": "Mid-level role building cross-platform mobile applications.",
+            "avgSalary": "60,000 - 100,000 BDT/month",
+            "growthPath": "Mobile Developer → Senior Mobile → Mobile Lead"
+        },
+        {
+            "id": "devops-intern",
+            "title": "DevOps Intern",
+            "company_types": [
+                "Cloud Companies",
+                "SaaS",
+                "Enterprise"
+            ],
+            "difficulty": "Beginner",
+            "minReadiness": 35,
+            "requiredSkills": [
+                "Linux",
+                "Git",
+                "Docker"
+            ],
+            "preferredSkills": [
+                "CI/CD",
+                "AWS",
+                "Python"
+            ],
+            "description": "Internship to learn DevOps practices, CI/CD, and cloud infrastructure.",
+            "avgSalary": "20,000 - 40,000 BDT/month",
+            "growthPath": "Intern → DevOps Engineer → Senior DevOps"
+        },
+        {
+            "id": "qa-engineer",
+            "title": "QA Engineer",
+            "company_types": [
+                "Product Companies",
+                "Software Houses",
+                "Enterprise"
+            ],
+            "difficulty": "Beginner",
+            "minReadiness": 30,
+            "requiredSkills": [
+                "Manual Testing",
+                "Test Cases",
+                "Bug Reporting"
+            ],
+            "preferredSkills": [
+                "Selenium",
+                "Automation",
+                "SQL",
+                "API Testing"
+            ],
+            "description": "Quality assurance role ensuring software meets quality standards.",
+            "avgSalary": "35,000 - 60,000 BDT/month",
+            "growthPath": "QA Engineer → Senior QA → QA Lead"
+        }
+    ]
+}
