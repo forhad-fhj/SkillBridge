@@ -1,0 +1,659 @@
+{
+    "python": {
+        "skill": "Python",
+        "resources": [
+            {
+                "title": "Python for Beginners - Full Course",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+                "difficulty": "Beginner",
+                "duration": "4.5 hours",
+                "type": "video"
+            },
+            {
+                "title": "Automate the Boring Stuff with Python",
+                "platform": "Udemy",
+                "url": "https://www.udemy.com/course/automate/",
+                "difficulty": "Beginner",
+                "duration": "10 hours",
+                "type": "course"
+            },
+            {
+                "title": "Real Python Tutorials",
+                "platform": "Real Python",
+                "url": "https://realpython.com/",
+                "difficulty": "Intermediate",
+                "duration": "Self-paced",
+                "type": "tutorial"
+            }
+        ]
+    },
+    "javascript": {
+        "skill": "JavaScript",
+        "resources": [
+            {
+                "title": "JavaScript Full Course for Beginners",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=PkZNo7MFNFg",
+                "difficulty": "Beginner",
+                "duration": "3.5 hours",
+                "type": "video"
+            },
+            {
+                "title": "The Complete JavaScript Course",
+                "platform": "Udemy",
+                "url": "https://www.udemy.com/course/the-complete-javascript-course/",
+                "difficulty": "Beginner",
+                "duration": "69 hours",
+                "type": "course"
+            },
+            {
+                "title": "JavaScript.info - Modern JavaScript Tutorial",
+                "platform": "JavaScript.info",
+                "url": "https://javascript.info/",
+                "difficulty": "Intermediate",
+                "duration": "Self-paced",
+                "type": "tutorial"
+            }
+        ]
+    },
+    "typescript": {
+        "skill": "TypeScript",
+        "resources": [
+            {
+                "title": "TypeScript Course for Beginners",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=BwuLxPH8IDs",
+                "difficulty": "Beginner",
+                "duration": "1.5 hours",
+                "type": "video"
+            },
+            {
+                "title": "Understanding TypeScript",
+                "platform": "Udemy",
+                "url": "https://www.udemy.com/course/understanding-typescript/",
+                "difficulty": "Intermediate",
+                "duration": "15 hours",
+                "type": "course"
+            },
+            {
+                "title": "TypeScript Official Handbook",
+                "platform": "TypeScript",
+                "url": "https://www.typescriptlang.org/docs/handbook/",
+                "difficulty": "Intermediate",
+                "duration": "Self-paced",
+                "type": "documentation"
+            }
+        ]
+    },
+    "react": {
+        "skill": "React",
+        "resources": [
+            {
+                "title": "React Course - Beginner's Tutorial",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=bMknfKXIFA8",
+                "difficulty": "Beginner",
+                "duration": "12 hours",
+                "type": "video"
+            },
+            {
+                "title": "React - The Complete Guide",
+                "platform": "Udemy",
+                "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux/",
+                "difficulty": "Intermediate",
+                "duration": "48 hours",
+                "type": "course"
+            },
+            {
+                "title": "React Official Documentation",
+                "platform": "React.dev",
+                "url": "https://react.dev/learn",
+                "difficulty": "Beginner",
+                "duration": "Self-paced",
+                "type": "documentation"
+            }
+        ]
+    },
+    "nextjs": {
+        "skill": "Next.js",
+        "resources": [
+            {
+                "title": "Next.js 14 Full Course",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=wm5gMKuwSYk",
+                "difficulty": "Intermediate",
+                "duration": "5 hours",
+                "type": "video"
+            },
+            {
+                "title": "Next.js & React - The Complete Guide",
+                "platform": "Udemy",
+                "url": "https://www.udemy.com/course/nextjs-react-the-complete-guide/",
+                "difficulty": "Intermediate",
+                "duration": "25 hours",
+                "type": "course"
+            },
+            {
+                "title": "Next.js Official Learn Course",
+                "platform": "Vercel",
+                "url": "https://nextjs.org/learn",
+                "difficulty": "Beginner",
+                "duration": "Self-paced",
+                "type": "tutorial"
+            }
+        ]
+    },
+    "nodejs": {
+        "skill": "Node.js",
+        "resources": [
+            {
+                "title": "Node.js and Express.js Full Course",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=Oe421EPjeBE",
+                "difficulty": "Beginner",
+                "duration": "8 hours",
+                "type": "video"
+            },
+            {
+                "title": "The Complete Node.js Developer Course",
+                "platform": "Udemy",
+                "url": "https://www.udemy.com/course/the-complete-nodejs-developer-course-2/",
+                "difficulty": "Intermediate",
+                "duration": "35 hours",
+                "type": "course"
+            }
+        ]
+    },
+    "express": {
+        "skill": "Express.js",
+        "resources": [
+            {
+                "title": "Express.js Full Course",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=G8uL0lFFoN0",
+                "difficulty": "Beginner",
+                "duration": "2 hours",
+                "type": "video"
+            },
+            {
+                "title": "Express.js Official Guide",
+                "platform": "Express",
+                "url": "https://expressjs.com/en/guide/routing.html",
+                "difficulty": "Intermediate",
+                "duration": "Self-paced",
+                "type": "documentation"
+            }
+        ]
+    },
+    "mongodb": {
+        "skill": "MongoDB",
+        "resources": [
+            {
+                "title": "MongoDB Crash Course",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=ofme2o29ngU",
+                "difficulty": "Beginner",
+                "duration": "1.5 hours",
+                "type": "video"
+            },
+            {
+                "title": "MongoDB - The Complete Developer's Guide",
+                "platform": "Udemy",
+                "url": "https://www.udemy.com/course/mongodb-the-complete-developers-guide/",
+                "difficulty": "Intermediate",
+                "duration": "17 hours",
+                "type": "course"
+            },
+            {
+                "title": "MongoDB University Free Courses",
+                "platform": "MongoDB",
+                "url": "https://university.mongodb.com/",
+                "difficulty": "Beginner",
+                "duration": "Self-paced",
+                "type": "course"
+            }
+        ]
+    },
+    "postgresql": {
+        "skill": "PostgreSQL",
+        "resources": [
+            {
+                "title": "PostgreSQL Tutorial Full Course",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=qw--VYLpxG4",
+                "difficulty": "Beginner",
+                "duration": "4 hours",
+                "type": "video"
+            },
+            {
+                "title": "The Complete SQL Bootcamp",
+                "platform": "Udemy",
+                "url": "https://www.udemy.com/course/the-complete-sql-bootcamp/",
+                "difficulty": "Beginner",
+                "duration": "9 hours",
+                "type": "course"
+            }
+        ]
+    },
+    "sql": {
+        "skill": "SQL",
+        "resources": [
+            {
+                "title": "SQL Tutorial - Full Database Course",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=HXV3zeQKqGY",
+                "difficulty": "Beginner",
+                "duration": "4 hours",
+                "type": "video"
+            },
+            {
+                "title": "SQLZoo Interactive Tutorial",
+                "platform": "SQLZoo",
+                "url": "https://sqlzoo.net/",
+                "difficulty": "Beginner",
+                "duration": "Self-paced",
+                "type": "tutorial"
+            }
+        ]
+    },
+    "docker": {
+        "skill": "Docker",
+        "resources": [
+            {
+                "title": "Docker Tutorial for Beginners",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=fqMOX6JJhGo",
+                "difficulty": "Beginner",
+                "duration": "2 hours",
+                "type": "video"
+            },
+            {
+                "title": "Docker and Kubernetes: The Complete Guide",
+                "platform": "Udemy",
+                "url": "https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/",
+                "difficulty": "Intermediate",
+                "duration": "22 hours",
+                "type": "course"
+            }
+        ]
+    },
+    "git": {
+        "skill": "Git",
+        "resources": [
+            {
+                "title": "Git and GitHub for Beginners",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=RGOj5yH7evk",
+                "difficulty": "Beginner",
+                "duration": "1 hour",
+                "type": "video"
+            },
+            {
+                "title": "Learn Git Branching",
+                "platform": "Learn Git Branching",
+                "url": "https://learngitbranching.js.org/",
+                "difficulty": "Beginner",
+                "duration": "Self-paced",
+                "type": "interactive"
+            }
+        ]
+    },
+    "tailwind": {
+        "skill": "Tailwind CSS",
+        "resources": [
+            {
+                "title": "Tailwind CSS Full Course",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=ft30zcMlFao",
+                "difficulty": "Beginner",
+                "duration": "4 hours",
+                "type": "video"
+            },
+            {
+                "title": "Tailwind CSS Official Documentation",
+                "platform": "Tailwind",
+                "url": "https://tailwindcss.com/docs",
+                "difficulty": "Beginner",
+                "duration": "Self-paced",
+                "type": "documentation"
+            }
+        ]
+    },
+    "css": {
+        "skill": "CSS",
+        "resources": [
+            {
+                "title": "CSS Tutorial - Zero to Hero",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=1Rs2ND1ryYc",
+                "difficulty": "Beginner",
+                "duration": "6 hours",
+                "type": "video"
+            },
+            {
+                "title": "CSS-Tricks",
+                "platform": "CSS-Tricks",
+                "url": "https://css-tricks.com/",
+                "difficulty": "Intermediate",
+                "duration": "Self-paced",
+                "type": "tutorial"
+            }
+        ]
+    },
+    "html": {
+        "skill": "HTML",
+        "resources": [
+            {
+                "title": "HTML Full Course",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=pQN-pnXPaVg",
+                "difficulty": "Beginner",
+                "duration": "2 hours",
+                "type": "video"
+            },
+            {
+                "title": "MDN HTML Guide",
+                "platform": "MDN",
+                "url": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+                "difficulty": "Beginner",
+                "duration": "Self-paced",
+                "type": "documentation"
+            }
+        ]
+    },
+    "django": {
+        "skill": "Django",
+        "resources": [
+            {
+                "title": "Django Tutorial for Beginners",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=F5mRW0jo-U4",
+                "difficulty": "Beginner",
+                "duration": "4 hours",
+                "type": "video"
+            },
+            {
+                "title": "Python Django - The Practical Guide",
+                "platform": "Udemy",
+                "url": "https://www.udemy.com/course/python-django-the-practical-guide/",
+                "difficulty": "Intermediate",
+                "duration": "23 hours",
+                "type": "course"
+            }
+        ]
+    },
+    "flask": {
+        "skill": "Flask",
+        "resources": [
+            {
+                "title": "Flask Course - Python Web Framework",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=Z1RJmh_OqeA",
+                "difficulty": "Beginner",
+                "duration": "3 hours",
+                "type": "video"
+            },
+            {
+                "title": "Flask Official Tutorial",
+                "platform": "Flask",
+                "url": "https://flask.palletsprojects.com/en/2.0.x/tutorial/",
+                "difficulty": "Beginner",
+                "duration": "Self-paced",
+                "type": "documentation"
+            }
+        ]
+    },
+    "fastapi": {
+        "skill": "FastAPI",
+        "resources": [
+            {
+                "title": "FastAPI Course for Beginners",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=tLKKmouUams",
+                "difficulty": "Beginner",
+                "duration": "5 hours",
+                "type": "video"
+            },
+            {
+                "title": "FastAPI Official Documentation",
+                "platform": "FastAPI",
+                "url": "https://fastapi.tiangolo.com/tutorial/",
+                "difficulty": "Intermediate",
+                "duration": "Self-paced",
+                "type": "documentation"
+            }
+        ]
+    },
+    "aws": {
+        "skill": "AWS",
+        "resources": [
+            {
+                "title": "AWS Certified Cloud Practitioner",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=SOTamWNgDKc",
+                "difficulty": "Beginner",
+                "duration": "13 hours",
+                "type": "video"
+            },
+            {
+                "title": "AWS Cloud Practitioner Essentials",
+                "platform": "AWS",
+                "url": "https://aws.amazon.com/training/digital/aws-cloud-practitioner-essentials/",
+                "difficulty": "Beginner",
+                "duration": "6 hours",
+                "type": "course"
+            }
+        ]
+    },
+    "redux": {
+        "skill": "Redux",
+        "resources": [
+            {
+                "title": "Redux Tutorial - Full Course",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=9rcBcVNvBQU",
+                "difficulty": "Intermediate",
+                "duration": "2.5 hours",
+                "type": "video"
+            },
+            {
+                "title": "Redux Official Documentation",
+                "platform": "Redux",
+                "url": "https://redux.js.org/introduction/getting-started",
+                "difficulty": "Intermediate",
+                "duration": "Self-paced",
+                "type": "documentation"
+            }
+        ]
+    },
+    "graphql": {
+        "skill": "GraphQL",
+        "resources": [
+            {
+                "title": "GraphQL Full Course",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=ed8SzALpx1Q",
+                "difficulty": "Intermediate",
+                "duration": "4 hours",
+                "type": "video"
+            },
+            {
+                "title": "How to GraphQL",
+                "platform": "How to GraphQL",
+                "url": "https://www.howtographql.com/",
+                "difficulty": "Beginner",
+                "duration": "Self-paced",
+                "type": "tutorial"
+            }
+        ]
+    },
+    "java": {
+        "skill": "Java",
+        "resources": [
+            {
+                "title": "Java Full Course for Beginners",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=grEKMHGYyns",
+                "difficulty": "Beginner",
+                "duration": "12 hours",
+                "type": "video"
+            },
+            {
+                "title": "Java Programming Masterclass",
+                "platform": "Udemy",
+                "url": "https://www.udemy.com/course/java-the-complete-java-developer-course/",
+                "difficulty": "Intermediate",
+                "duration": "80 hours",
+                "type": "course"
+            }
+        ]
+    },
+    "kubernetes": {
+        "skill": "Kubernetes",
+        "resources": [
+            {
+                "title": "Kubernetes Course - Full Beginners Tutorial",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=X48VuDVv0do",
+                "difficulty": "Intermediate",
+                "duration": "4 hours",
+                "type": "video"
+            },
+            {
+                "title": "Kubernetes Official Tutorials",
+                "platform": "Kubernetes",
+                "url": "https://kubernetes.io/docs/tutorials/",
+                "difficulty": "Intermediate",
+                "duration": "Self-paced",
+                "type": "documentation"
+            }
+        ]
+    },
+    "figma": {
+        "skill": "Figma",
+        "resources": [
+            {
+                "title": "Figma UI/UX Design Tutorial",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=jwCmIBJ8Jtc",
+                "difficulty": "Beginner",
+                "duration": "3 hours",
+                "type": "video"
+            },
+            {
+                "title": "Figma for Beginners",
+                "platform": "Figma",
+                "url": "https://help.figma.com/hc/en-us/sections/4405269443991-Figma-for-Beginners",
+                "difficulty": "Beginner",
+                "duration": "Self-paced",
+                "type": "tutorial"
+            }
+        ]
+    },
+    "vue": {
+        "skill": "Vue.js",
+        "resources": [
+            {
+                "title": "Vue.js Course for Beginners",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=FXpIoQ_rT_c",
+                "difficulty": "Beginner",
+                "duration": "3.5 hours",
+                "type": "video"
+            },
+            {
+                "title": "Vue 3 - The Complete Guide",
+                "platform": "Udemy",
+                "url": "https://www.udemy.com/course/vuejs-2-the-complete-guide/",
+                "difficulty": "Intermediate",
+                "duration": "32 hours",
+                "type": "course"
+            }
+        ]
+    },
+    "angular": {
+        "skill": "Angular",
+        "resources": [
+            {
+                "title": "Angular Tutorial for Beginners",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=3qBXWUpoPHo",
+                "difficulty": "Beginner",
+                "duration": "2 hours",
+                "type": "video"
+            },
+            {
+                "title": "Angular - The Complete Guide",
+                "platform": "Udemy",
+                "url": "https://www.udemy.com/course/the-complete-guide-to-angular-2/",
+                "difficulty": "Intermediate",
+                "duration": "34 hours",
+                "type": "course"
+            }
+        ]
+    },
+    "machine learning": {
+        "skill": "Machine Learning",
+        "resources": [
+            {
+                "title": "Machine Learning for Everybody",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=i_LwzRVP7bg",
+                "difficulty": "Beginner",
+                "duration": "3 hours",
+                "type": "video"
+            },
+            {
+                "title": "Machine Learning Specialization",
+                "platform": "Coursera",
+                "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+                "difficulty": "Intermediate",
+                "duration": "3 months",
+                "type": "course"
+            }
+        ]
+    },
+    "data structures": {
+        "skill": "Data Structures",
+        "resources": [
+            {
+                "title": "Data Structures Easy to Advanced",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=RBSGKlAvoiM",
+                "difficulty": "Intermediate",
+                "duration": "8 hours",
+                "type": "video"
+            },
+            {
+                "title": "LeetCode Practice",
+                "platform": "LeetCode",
+                "url": "https://leetcode.com/explore/",
+                "difficulty": "Intermediate",
+                "duration": "Self-paced",
+                "type": "practice"
+            }
+        ]
+    },
+    "algorithms": {
+        "skill": "Algorithms",
+        "resources": [
+            {
+                "title": "Algorithms and Data Structures Tutorial",
+                "platform": "freeCodeCamp",
+                "url": "https://www.youtube.com/watch?v=8hly31xKli0",
+                "difficulty": "Intermediate",
+                "duration": "5 hours",
+                "type": "video"
+            },
+            {
+                "title": "NeetCode 150",
+                "platform": "NeetCode",
+                "url": "https://neetcode.io/",
+                "difficulty": "Intermediate",
+                "duration": "Self-paced",
+                "type": "practice"
+            }
+        ]
+    }
+}

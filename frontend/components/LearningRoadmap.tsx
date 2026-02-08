@@ -1,17 +1,26 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Card } from '@/components/ui/Card';
 
 interface Resource {
     title: string;
     url: string;
+    platform?: string;
+    difficulty?: string;
+    duration?: string;
+    type?: string;
 }
 
 interface RoadmapStep {
     skill: string;
     priority: "Critical" | "High" | "Medium";
-    estimated_time: string;
-    description: string;
+    estimated_time?: string;
+    estimatedTime?: string;
+    description?: string;
     resources: Resource[];
+    order?: number;
+    scoreImpact?: string;
+    frequency?: number;
 }
 
 interface LearningRoadmapProps {
@@ -19,7 +28,36 @@ interface LearningRoadmapProps {
     readinessScore: number;
 }
 
+const platformIcons: Record<string, string> = {
+    'freeCodeCamp': '🆓',
+    'Udemy': '🎓',
+    'Coursera': '📚',
+    'YouTube': '▶️',
+    'MDN': '📖',
+    'React.dev': '⚛️',
+    'TypeScript': '🔷',
+    'Vercel': '▲',
+    'default': '🔗'
+};
+
+const difficultyColors: Record<string, string> = {
+    'Beginner': 'bg-green-500/20 text-green-400 border-green-500/30',
+    'Intermediate': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
+    'Advanced': 'bg-red-500/20 text-red-400 border-red-500/30',
+};
+
 export const LearningRoadmap = ({ roadmap, readinessScore }: LearningRoadmapProps) => {
+    const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set());
+
+    const toggleCard = (index: number) => {
+        const newExpanded = new Set(expandedCards);
+        if (newExpanded.has(index)) {
+            newExpanded.delete(index);
+        } else {
+            newExpanded.add(index);
+        }
+        setExpandedCards(newExpanded);
+    };
 
     // Function to download roadmap as text
     const downloadRoadmap = () => {
@@ -83,7 +121,7 @@ export const LearningRoadmap = ({ roadmap, readinessScore }: LearningRoadmapProp
                             {/* Timeline Node */}
                             <div className="absolute left-0 md:left-1/2 w-8 h-8 rounded-full bg-slate-900 border-4 border-slate-700 flex items-center justify-center z-10 -translate-x-1/2 md:-translate-x-1/2 mt-1 md:mt-0">
                                 <div className={`w-3 h-3 rounded-full ${step.priority === 'Critical' ? 'bg-red-500' :
-                                        step.priority === 'High' ? 'bg-yellow-500' : 'bg-green-500'
+                                    step.priority === 'High' ? 'bg-yellow-500' : 'bg-green-500'
                                     }`}></div>
                             </div>
 
@@ -93,8 +131,8 @@ export const LearningRoadmap = ({ roadmap, readinessScore }: LearningRoadmapProp
                             {/* Card Content */}
                             <div className="w-full md:w-1/2 pl-8 md:pl-0">
                                 <div className={`relative p-6 rounded-2xl border bg-slate-800/50 hover:bg-slate-800/80 transition-all group ${step.priority === 'Critical' ? 'border-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.1)]' :
-                                        step.priority === 'High' ? 'border-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.1)]' :
-                                            'border-green-500/20 shadow-[0_0_15px_rgba(34,197,94,0.1)]'
+                                    step.priority === 'High' ? 'border-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.1)]' :
+                                        'border-green-500/20 shadow-[0_0_15px_rgba(34,197,94,0.1)]'
                                     }`}>
                                     {/* Arrow for Desktop */}
                                     <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-slate-800 border-l border-b border-t-0 border-r-0 rotate-45 transform 
@@ -106,38 +144,108 @@ export const LearningRoadmap = ({ roadmap, readinessScore }: LearningRoadmapProp
                                             {step.skill}
                                         </h3>
                                         <span className={`text-xs px-2 py-1 rounded font-medium uppercase tracking-wider ${step.priority === 'Critical' ? 'bg-red-500/10 text-red-400' :
-                                                step.priority === 'High' ? 'bg-yellow-500/10 text-yellow-400' :
-                                                    'bg-green-500/10 text-green-400'
+                                            step.priority === 'High' ? 'bg-yellow-500/10 text-yellow-400' :
+                                                'bg-green-500/10 text-green-400'
                                             }`}>
                                             {step.priority}
                                         </span>
                                     </div>
 
-                                    <div className="flex items-center text-sm text-slate-400 mb-4">
-                                        <span className="mr-4 flex items-center">
-                                            ⏱ {step.estimated_time}
+                                    <div className="flex items-center gap-3 text-sm text-slate-400 mb-4 flex-wrap">
+                                        <span className="flex items-center">
+                                            ⏱ {step.estimatedTime || step.estimated_time || 'Varies'}
                                         </span>
+                                        {step.scoreImpact && (
+                                            <span className="flex items-center text-green-400">
+                                                📈 {step.scoreImpact}
+                                            </span>
+                                        )}
+                                        {step.frequency && step.frequency > 0 && (
+                                            <span className="flex items-center text-blue-400">
+                                                🔥 {step.frequency} job mentions
+                                            </span>
+                                        )}
                                     </div>
 
-                                    <p className="text-slate-300 mb-4 text-sm leading-relaxed">
-                                        {step.description}
-                                    </p>
+                                    {step.description && (
+                                        <p className="text-slate-300 mb-4 text-sm leading-relaxed">
+                                            {step.description}
+                                        </p>
+                                    )}
 
-                                    <div className="space-y-2">
-                                        <p className="text-xs font-semibold text-slate-500 uppercase">Recommended Resources</p>
-                                        <div className="flex flex-wrap gap-2">
-                                            {step.resources.map((res, i) => (
-                                                <a
-                                                    key={i}
-                                                    href={res.url}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="inline-flex items-center px-3 py-1.5 rounded-lg bg-slate-700/50 hover:bg-blue-600/20 hover:text-blue-300 text-xs text-slate-300 transition-colors border border-slate-600 hover:border-blue-500/50"
+                                    <div className="space-y-3">
+                                        <button
+                                            onClick={() => toggleCard(index)}
+                                            className="flex items-center justify-between w-full text-xs font-semibold text-slate-400 uppercase hover:text-blue-400 transition-colors"
+                                        >
+                                            <span>📚 Learning Resources ({step.resources.length})</span>
+                                            <span className={`transform transition-transform ${expandedCards.has(index) ? 'rotate-180' : ''}`}>
+                                                ▼
+                                            </span>
+                                        </button>
+
+                                        <AnimatePresence>
+                                            {expandedCards.has(index) && (
+                                                <motion.div
+                                                    initial={{ height: 0, opacity: 0 }}
+                                                    animate={{ height: 'auto', opacity: 1 }}
+                                                    exit={{ height: 0, opacity: 0 }}
+                                                    transition={{ duration: 0.2 }}
+                                                    className="space-y-2 overflow-hidden"
                                                 >
-                                                    🔗 {res.title}
-                                                </a>
-                                            ))}
-                                        </div>
+                                                    {step.resources.map((res, i) => (
+                                                        <a
+                                                            key={i}
+                                                            href={res.url}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="block p-3 rounded-xl bg-slate-700/30 hover:bg-blue-600/20 border border-slate-600/50 hover:border-blue-500/50 transition-all group/resource"
+                                                        >
+                                                            <div className="flex items-start justify-between gap-2">
+                                                                <div className="flex-1">
+                                                                    <div className="flex items-center gap-2 mb-1">
+                                                                        <span className="text-lg">
+                                                                            {platformIcons[res.platform || 'default'] || platformIcons['default']}
+                                                                        </span>
+                                                                        <span className="text-sm font-medium text-white group-hover/resource:text-blue-300 transition-colors">
+                                                                            {res.title}
+                                                                        </span>
+                                                                    </div>
+                                                                    <div className="flex items-center gap-2 text-xs text-slate-500">
+                                                                        {res.platform && (
+                                                                            <span className="text-slate-400">{res.platform}</span>
+                                                                        )}
+                                                                        {res.duration && (
+                                                                            <span>• {res.duration}</span>
+                                                                        )}
+                                                                    </div>
+                                                                </div>
+                                                                <div className="flex flex-col items-end gap-1">
+                                                                    {res.difficulty && (
+                                                                        <span className={`text-[10px] px-2 py-0.5 rounded-full border ${difficultyColors[res.difficulty] || 'bg-slate-500/20 text-slate-400 border-slate-500/30'}`}>
+                                                                            {res.difficulty}
+                                                                        </span>
+                                                                    )}
+                                                                    <span className="text-blue-400 text-xs opacity-0 group-hover/resource:opacity-100 transition-opacity">
+                                                                        Open →
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    ))}
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+
+                                        {!expandedCards.has(index) && step.resources.length > 0 && (
+                                            <div className="flex flex-wrap gap-1.5">
+                                                {step.resources.slice(0, 3).map((res, i) => (
+                                                    <span key={i} className="text-xs px-2 py-1 rounded-lg bg-slate-700/50 text-slate-400 border border-slate-600/50">
+                                                        {platformIcons[res.platform || 'default']} {res.platform || 'Resource'}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>

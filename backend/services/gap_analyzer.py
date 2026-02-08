@@ -5,6 +5,7 @@ from services.nlp_engine import (
     calculate_skill_frequency,
     normalize_skill
 )
+from services.learning_resources import get_resources_for_skill, get_priority_learning_path
 
 def calculate_readiness_score(
     user_skills: Dict[str, List[str]],
@@ -151,34 +152,38 @@ def generate_learning_roadmap(
     current_score: int
 ) -> List[Dict]:
     """
-    Generate a personalized structured learning roadmap.
+    Generate a personalized structured learning roadmap with curated resources.
     
     Returns:
-        List of roadmap items with details
+        List of roadmap items with details and learning resources
     """
     if not missing_skills:
         return []
     
-    roadmap = []
+    # Use the learning resources service for curated resources
+    roadmap = get_priority_learning_path(
+        missing_skills,
+        max_skills=10,
+        max_resources_per_skill=3
+    )
     
-    # Sort by priority (Critical > High > Medium)
-    priority_order = {"Critical": 0, "High": 1, "Medium": 2}
-    sorted_skills = sorted(missing_skills, key=lambda x: priority_order.get(x["priority"], 3))
+    # Add additional metadata
+    for i, item in enumerate(roadmap):
+        item["order"] = i + 1
+        item["scoreImpact"] = _calculate_score_impact(item.get("frequency", 0), current_score)
     
-    for item in sorted_skills:
-        skill_name = item["skill"]
-        details = get_skill_resources(skill_name)
-        
-        step = {
-            "skill": skill_name,
-            "priority": item["priority"],
-            "estimated_time": details["estimated_time"],
-            "description": details["description"],
-            "resources": details["resources"]
-        }
-        roadmap.append(step)
-            
     return roadmap
+
+def _calculate_score_impact(frequency: int, current_score: int) -> str:
+    """Estimate how much learning this skill could boost the score."""
+    if frequency >= 10:
+        return "+10-15%"
+    elif frequency >= 5:
+        return "+5-10%"
+    elif frequency >= 3:
+        return "+3-5%"
+    else:
+        return "+1-3%"
 
 def analyze_gap(
     user_skills: Dict[str, List[str]],
