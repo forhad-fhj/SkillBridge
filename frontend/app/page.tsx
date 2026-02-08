@@ -45,11 +45,6 @@ export default function Home() {
                             <Link href="#how-it-works" className="hover:text-white transition-colors">How it Works</Link>
                             <Link href="#trending" className="hover:text-white transition-colors">Trending Roles</Link>
                             <Link href="/dashboard">
-                                <Button variant="secondary" size="sm" className="bg-slate-800 hover:bg-slate-700 text-white border-slate-700">
-                                    Sign In
-                                </Button>
-                            </Link>
-                            <Link href="/dashboard">
                                 <Button size="sm" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 border-none shadow-lg shadow-blue-500/25">
                                     Get Started
                                 </Button>
