@@ -79,8 +79,10 @@ export default function DashboardPage() {
                 throw new Error(errorMessage);
             }
 
-            if (!data.readinessScore) {
-                throw new Error('Invalid response from analysis service');
+            // Check if readinessScore exists (0 is valid!)
+            if (data.readinessScore === undefined || data.readinessScore === null) {
+                console.error('Invalid analysis response:', data);
+                throw new Error('Invalid response from analysis service - missing readinessScore');
             }
 
             setAnalysisResults(data);
