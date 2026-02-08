@@ -1,216 +1,174 @@
-# SkillBridge 🌉
+<p align="center">
+  <h1 align="center">🌉 SkillBridge</h1>
+  <p align="center">
+    <strong>AI-Powered Internship Readiness Analyzer</strong>
+  </p>
+  <p align="center">
+    Analyze your resume against real job market data and get a personalized learning roadmap
+  </p>
+</p>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
-[![Python Version](https://img.shields.io/badge/python-%3E%3D3.10-blue)](https://www.python.org/)
+<p align="center">
+  <a href="https://skill-bridge-lemon.vercel.app">
+    <img src="https://img.shields.io/badge/🚀_Live_Demo-Visit_Now-blue?style=for-the-badge" alt="Live Demo">
+  </a>
+</p>
 
-SkillBridge is an AI-powered **Internship Readiness Analyzer** designed specifically for students and job seekers in Bangladesh. Using advanced Natural Language Processing (NLP), it analyzes your resume against real-world job descriptions from the Bangladesh tech market to calculate your "Internship Readiness Score" and generate a personalized learning roadmap
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-14-black?logo=next.js" alt="Next.js">
+  <img src="https://img.shields.io/badge/FastAPI-Python-009688?logo=fastapi" alt="FastAPI">
+  <img src="https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql" alt="PostgreSQL">
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
+</p>
 
-## ✨ Key Features
+---
 
-- **📄 Intelligent Resume Analysis**: Upload your PDF/DOCX resume and let our AI extract and analyze your skills using state-of-the-art NLP models
-- **📊 Readiness Score Calculation**: Get a comprehensive score (0-100%) indicating your market fit for internships
-- **🔍 Detailed Gap Analysis**: Identify exactly which high-demand skills you're missing compared to market requirements
-- **🗺️ Personalized Learning Roadmap**: Receive a prioritized checklist of skills to learn next, tailored to your current profile
-- **🇧🇩 Bangladesh Market Focus**: Specifically trained on Bangladesh tech industry data from Bdjobs, LinkedIn, and other sources
-- **🎯 Domain-Specific Insights**: Choose from various tech domains (Web Development, Data Science, Mobile Development, etc.)
-- **📈 Progress Tracking**: Monitor your skill development over time with visual dashboards
-- **🔒 Privacy-First**: All analysis happens locally; your resume data is never stored or shared
+## ✨ Features
 
-## 🖼️ Screenshots
+| Feature | Description |
+|---------|-------------|
+| 📄 **Resume Analysis** | Upload PDF/DOCX and extract skills using NLP |
+| 📊 **Readiness Score** | Get a 0-100% score based on market demand |
+| 🔍 **Gap Analysis** | See exactly which skills you're missing |
+| 🗺️ **Learning Roadmap** | Prioritized list of skills to learn next |
+| 🎯 **Domain Selection** | Choose from Frontend, Backend, Full Stack, Data, Mobile |
+| 📈 **Visual Dashboard** | Beautiful charts and skill breakdowns |
 
-### Dashboard Overview
-![SkillBridge Dashboard](https://via.placeholder.com/800x400/0a0a0f/38bdf8?text=SkillBridge+Dashboard)
+---
 
-### Gap Analysis Results
-![Gap Analysis](https://via.placeholder.com/800x400/0a0a0f/38bdf8?text=Gap+Analysis+Results)
+## 🛠️ Tech Stack
 
-### Learning Roadmap
-![Learning Roadmap](https://via.placeholder.com/800x400/0a0a0f/38bdf8?text=Learning+Roadmap)
+| Layer | Technology |
+|-------|------------|
+| **Frontend** | Next.js 14, TypeScript, Tailwind CSS |
+| **Backend** | FastAPI, Python, SpaCy NLP |
+| **Database** | PostgreSQL, Prisma ORM |
+| **Deployment** | Vercel (Frontend), Render (Backend), Neon (Database) |
 
-## 🛠️ Technology Stack
+---
 
-### Frontend
-- **Framework**: Next.js 14 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Charts**: Custom D3.js implementations
+## 🚀 Quick Start
 
-### Backend
-- **Framework**: FastAPI (Python)
-- **NLP Engine**: SpaCy with custom Bangladeshi market models
-- **Web Scraping**: BeautifulSoup4 for job data collection
-- **PDF Processing**: PyPDF2 and python-docx
+### Prerequisites
 
-### Database & Infrastructure
-- **Database**: PostgreSQL
-- **ORM**: Prisma
-- **Containerization**: Docker & Docker Compose
-- **Deployment**: Ready for cloud platforms (Vercel, Railway, etc.)
+- Node.js 18+
+- Python 3.10+
+- PostgreSQL (or Docker)
 
-## 📋 Prerequisites
-
-Before running SkillBridge, ensure you have the following installed:
-
-- **Node.js** 18.0.0 or higher
-- **Python** 3.10.0 or higher
-- **PostgreSQL** 16.0 or higher (or Docker for containerized setup)
-- **Docker** & **Docker Compose** (recommended for easy setup)
-
-## 🚀 Installation & Setup
-
-### 1. Clone the Repository
+### 1. Clone & Setup
 
 ```bash
 git clone https://github.com/forhad-fhj/SkillBridge.git
 cd SkillBridge
 ```
 
-### 2. Environment Setup
-
-Create a `.env.local` file in the root directory:
-
-```env
-# Database
-DATABASE_URL="postgresql://skillbridge:skillbridge123@localhost:5433/skillbridge"
-
-# Backend API
-PYTHON_BACKEND_URL="http://localhost:8000"
-NEXT_PUBLIC_API_URL="http://localhost:3000"
-
-# Optional: External APIs (if needed)
-# OPENAI_API_KEY="your-key-here"
-```
-
-### 3. Database Setup
-
-**Option A: Using Docker (Recommended)**
+### 2. Backend Setup
 
 ```bash
-# Start PostgreSQL container
-docker-compose up -d postgres
-
-# Run database migrations
-npx prisma migrate deploy
-
-# (Optional) Seed with sample data
-npx prisma db seed
-```
-
-**Option B: Local PostgreSQL**
-
-Ensure PostgreSQL is running on port 5433, then:
-
-```bash
-npx prisma migrate deploy
-npx prisma db seed
-```
-
-### 4. Backend Setup
-
-```bash
-# Navigate to backend directory
 cd backend
-
-# Create virtual environment
 python -m venv venv
-
-# Activate virtual environment
-# On Windows:
-venv\Scripts\activate
-# On macOS/Linux:
-source venv/bin/activate
-
-# Install dependencies
+venv\Scripts\activate        # Windows
+# source venv/bin/activate   # macOS/Linux
 pip install -r requirements.txt
-
-# Start the backend server
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
+python -m spacy download en_core_web_md
+uvicorn main:app --reload --port 8001
 ```
 
-### 5. Frontend Setup
+### 3. Frontend Setup
 
 ```bash
-# In a new terminal, from the root directory
+cd frontend
 npm install
+cp .env.example .env.local   # Configure environment
+npx prisma generate
 npm run dev
 ```
 
-### 6. Access the Application
+### 4. Open App
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Visit [http://localhost:3000](http://localhost:3000)
 
-## 📖 Usage
+---
 
-1. **Upload Your Resume**: Click the upload area and select your PDF or DOCX resume
-2. **Select Domain**: Choose your target tech domain from the dropdown
-3. **Analyze**: Click "Analyze Resume" to start the AI-powered analysis
-4. **Review Results**:
-   - View your Internship Readiness Score
-   - Explore the detailed gap analysis
-   - Follow your personalized learning roadmap
-5. **Track Progress**: Re-upload updated resumes to see improvement over time
+## 🌐 Deployment
 
-## 🔧 API Documentation
+| Service | URL |
+|---------|-----|
+| **Frontend** | https://skill-bridge-lemon.vercel.app |
+| **Backend API** | https://skillbridge-4eey.onrender.com |
+| **Health Check** | https://skillbridge-4eey.onrender.com/api/health |
 
-The backend provides RESTful APIs for integration:
+---
 
-### Core Endpoints
+## 📡 API Endpoints
 
-- `POST /api/analyze` - Analyze resume and return readiness score
-- `POST /api/upload` - Upload and process resume files
-- `GET /api/jobs` - Retrieve job market data
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/parse-document` | Upload and parse resume |
+| `POST` | `/api/extract-skills` | Extract skills from text |
+| `POST` | `/api/analyze-gap` | Perform gap analysis |
+| `GET` | `/api/health` | Health check |
 
-For detailed API documentation, see the [API Reference](./backend/README.md) or visit `/docs` when the backend is running.
+---
 
-## 🧪 Testing
+## 📁 Project Structure
+
+```
+SkillBridge/
+├── backend/                 # FastAPI Python backend
+│   ├── main.py              # App entry point
+│   ├── api/routes.py        # API endpoints
+│   ├── services/            # NLP & analysis logic
+│   └── requirements.txt     # Python dependencies
+├── frontend/                # Next.js frontend
+│   ├── app/                 # App router pages
+│   ├── components/          # React components
+│   ├── lib/                 # Utilities & API client
+│   └── prisma/              # Database schema
+└── docker-compose.yml       # Local PostgreSQL
+```
+
+---
+
+## 🐳 Docker Setup (Optional)
 
 ```bash
-# Run frontend tests
-npm test
+# Start PostgreSQL
+docker-compose up -d postgres
 
-# Run backend tests
-cd backend
-python -m pytest
-
-# Run end-to-end tests
-npm run test:e2e
+# Run migrations
+cd frontend
+npx prisma migrate deploy
 ```
+
+---
 
 ## 🤝 Contributing
 
-We welcome contributions! Please follow these steps:
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
 
-1. **Fork** the repository
-2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
-3. **Commit** your changes: `git commit -m 'Add amazing feature'`
-4. **Push** to the branch: `git push origin feature/amazing-feature`
-5. **Open** a Pull Request
-
-### Development Guidelines
-
-- Follow the existing code style
-- Write tests for new features
-- Update documentation as needed
-- Ensure all tests pass before submitting
+---
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+---
 
-- **Bangladesh Tech Community** for inspiration and market insights
-- **SpaCy** and **FastAPI** communities for excellent tools
-- **Open Source Contributors** who make projects like this possible
+## 👨‍💻 Author
 
-## 📞 Support & Contact
+**Forhad Hasan**
 
-- **Issues**: [GitHub Issues](https://github.com/forhad-fhj/SkillBridge/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/forhad-fhj/SkillBridge/discussions)
-- **Email**: [forhadhasan1007@google.com](mailto:forhad@google.com)
+- GitHub: [@forhad-fhj](https://github.com/forhad-fhj)
+- LinkedIn: [Forhad Hasan](https://linkedin.com/in/forhad-hasan)
+- Email: forhadhasan1007@gmail.com
 
 ---
 
-**Made with ❤️ for Bangladesh's future developers**
+<p align="center">
+  Made with ❤️ for Bangladesh's future developers
+</p>
