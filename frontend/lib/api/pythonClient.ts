@@ -104,6 +104,17 @@ class PythonClient {
         }
     }
 
+    async getResumeFeedback(resumeText: string) {
+        try {
+            const response = await this.jsonClient.post('/api/resume-feedback', {
+                resumeText
+            });
+            return response.data;
+        } catch (error) {
+            throw this.handleError(error);
+        }
+    }
+
     async healthCheck() {
         try {
             const response = await this.jsonClient.get('/api/health');

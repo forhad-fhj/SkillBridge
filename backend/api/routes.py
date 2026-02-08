@@ -6,6 +6,7 @@ from services.nlp_engine import extract_skills_from_text
 from services.gap_analyzer import analyze_gap
 from services.job_fit_analyzer import analyze_job_fit
 from services.role_recommender import recommend_roles
+from services.resume_feedback import analyze_resume_quality
 import logging
 
 # Setup logging
@@ -97,6 +98,9 @@ class RoleRecommendRequest(BaseModel):
     userSkills: Dict[str, List[str]]
     readinessScore: int
     maxRoles: Optional[int] = 5
+
+class ResumeFeedbackRequest(BaseModel):
+    resumeText: str
 
 # Routes
 @router.post("/parse-document", response_model=SkillExtractionResponse)
@@ -267,9 +271,40 @@ async def recommend_roles_endpoint(request: RoleRecommendRequest):
         logger.error(f"Error recommending roles: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Error recommending roles: {str(e)}")
 
+@router.post("/resume-feedback")
+async def resume_feedback_endpoint(request: ResumeFeedbackRequest):
+    """
+    Analyze resume quality and provide detailed feedback.
+    
+    Returns:
+    - Overall quality score
+    - Action verb analysis
+    - Soft skills detection
+    - Quantified achievements
+    - Bullet point quality
+    """
+    try:
+        logger.info("Analyzing resume quality...")
+        
+        if not request.resumeText or len(request.resumeText.strip()) < 100:
+            raise ValueError("Resume text is too short for meaningful analysis.")
+        
+        result = analyze_resume_quality(request.resumeText)
+        
+        logger.info(f"Resume analysis completed. Quality: {result.get('qualityLevel')}")
+        
+        return result
+    
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        logger.error(f"Error analyzing resume: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error analyzing resume: {str(e)}")
+
 @router.get("/health")
 async def health_check():
     """Health check endpoint."""
     return {"status": "healthy", "service": "SkillBridge NLP API"}
+
 
 
