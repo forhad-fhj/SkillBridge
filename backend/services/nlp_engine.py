@@ -150,7 +150,7 @@ def calculate_skill_frequency(job_descriptions: List[Dict]) -> Dict[str, int]:
     Calculate frequency of skills across multiple job descriptions.
     
     Args:
-        job_descriptions: List of job dicts with 'extractedSkills' field
+        job_descriptions: List of job dicts with 'extractedSkills' or 'skills' field
         
     Returns:
         Dictionary mapping skill names to their frequency count
@@ -158,8 +158,14 @@ def calculate_skill_frequency(job_descriptions: List[Dict]) -> Dict[str, int]:
     frequency: Dict[str, int] = {}
     
     for job in job_descriptions:
-        skills = job.get("extractedSkills", {})
-        all_skills = get_all_skills_flat(skills)
+        # Handle both mock data format (skills: [...]) and database format (extractedSkills: {...})
+        if "skills" in job:
+            # Mock data format: flat list of skills
+            all_skills = job.get("skills", [])
+        else:
+            # Database format: categorized skills
+            skills = job.get("extractedSkills", {})
+            all_skills = get_all_skills_flat(skills)
         
         for skill in all_skills:
             normalized = normalize_skill(skill)
